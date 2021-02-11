@@ -1,5 +1,5 @@
-const createGetSubscription = require("./getSubscription");
+const makeGetSubscription = require("./getSubscription");
 
 module.exports = {
-  createGetSubscription,
+  makeGetSubscription,
 };

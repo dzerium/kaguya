@@ -1,4 +1,4 @@
-function makeGetSubscription({ subscriptionDb }) {
+function makeCreateSubscription({ subscriptionDb }) {
   // * Get Subscription Use-case
   return async function getSubscription({ id } = {}) {
     const subscription = await subscriptionDb.findById({ id });
@@ -7,4 +7,4 @@ function makeGetSubscription({ subscriptionDb }) {
   };
 }
 
-module.exports = makeGetSubscription;
+module.exports = makeCreateSubscription;

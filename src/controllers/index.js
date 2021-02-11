@@ -2,10 +2,10 @@ const { subscriptionUseCases } = require("../usecases");
 
 const { getSubscriptionUC } = subscriptionUseCases;
 
-const { createGetSubscription } = require("./subscription");
+const { makeGetSubscription } = require("./subscription");
 
 // * Constructors
-const getSubscription = createGetSubscription(getSubscriptionUC);
+const getSubscription = makeGetSubscription(getSubscriptionUC);
 
 const subscriptionController = Object.freeze({ getSubscription });
 

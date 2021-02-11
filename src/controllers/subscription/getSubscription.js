@@ -1,4 +1,4 @@
-function createGetSubscription(getSubscriptionUc) {
+function makeGetSubscription(getSubscriptionUc) {
   // * Get Subscription Controller
   return async function getSubscription(httpRequest) {
     const headers = { "Content-Type": "application/json" };
@@ -13,4 +13,4 @@ function createGetSubscription(getSubscriptionUc) {
   };
 }
 
-module.exports = createGetSubscription;
+module.exports = makeGetSubscription;

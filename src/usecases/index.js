@@ -1,4 +1,4 @@
-const { createGetSubscription } = require("./subscription");
+const { makeGetSubscription } = require("./subscription");
 
 // Database interfaces
 // const { subscriptionDb } = require("../data-access");
@@ -9,7 +9,7 @@ const subscriptionDb = () => {
 };
 
 // Create UC from factory
-const getSubscriptionUC = createGetSubscription({ subscriptionDb });
+const getSubscriptionUC = makeGetSubscription({ subscriptionDb });
 
 const subscriptionUseCases = Object.freeze({
   getSubscriptionUC,
