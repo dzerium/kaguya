@@ -1,5 +1,7 @@
 const { Pool } = require("pg");
 
+const makeProductDb = require("./product");
+
 const { PG_USER, PG_PASS, PG_HOST, PG_DB, PG_PORT, PG_SSL } = process.env;
 
 // * default pool 10
@@ -27,4 +29,6 @@ async function destroyDb() {
   await pool.end();
 }
 
-module.exports = { makeDb, destroyDb };
+productDb = makeProductDb({ makeDb });
+
+module.exports = { productDb };

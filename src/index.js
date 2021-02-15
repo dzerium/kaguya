@@ -16,6 +16,14 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use((err, req, res, next) => {
+  if (err) {
+    res.status(400).send({ error: "Json parse error" });
+  } else {
+    next();
+  }
+});
+
 app.use("/api", router());
 
 app.listen(PORT, () => console.log(`App running in port: ${PORT}`));

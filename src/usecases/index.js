@@ -1,6 +1,7 @@
 const { makeGetSubscription } = require("./subscription");
+const { makeGetProduct } = require("./product");
 
-const { makeDb } = require("../data-access");
+const { productDb } = require("../data-access");
 // Database interfaces
 // const { subscriptionDb } = require("../data-access");
 const subscriptionDb = () => {
@@ -8,12 +9,17 @@ const subscriptionDb = () => {
     return { planId: "P-23B55241AT195681HSJKAKKQ" };
   };
 };
-makeDb();
+
 // Create UC from factory
-const getSubscriptionUC = makeGetSubscription({ subscriptionDb });
+const getSubscriptionUC = makeGetSubscription({ productDb, subscriptionDb });
+const getProductUc = makeGetProduct({ productDb });
 
 const subscriptionUseCases = Object.freeze({
   getSubscriptionUC,
 });
 
-module.exports = { subscriptionUseCases };
+const productUseCases = Object.freeze({
+  getProductUc,
+});
+
+module.exports = { subscriptionUseCases, productUseCases };
