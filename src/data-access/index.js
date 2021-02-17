@@ -1,6 +1,6 @@
 const { Pool } = require("pg");
 
-const makeProductDb = require("./product");
+const makeCustomerDb = require("./customer");
 
 const { PG_USER, PG_PASS, PG_HOST, PG_DB, PG_PORT, PG_SSL } = process.env;
 
@@ -29,6 +29,6 @@ async function destroyDb() {
   await pool.end();
 }
 
-productDb = makeProductDb({ makeDb });
+customerDb = makeCustomerDb({ makeDb });
 
-module.exports = { productDb };
+module.exports = { customerDb };

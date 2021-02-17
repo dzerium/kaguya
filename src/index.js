@@ -3,7 +3,7 @@ const dotenv = require("dotenv").config();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-const router = require("./routes");
+const createRouter = require("./routes");
 
 const PORT = process.env.APP_PORT || "8000";
 
@@ -24,6 +24,6 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.use("/api", router());
+app.use("/api", createRouter());
 
 app.listen(PORT, () => console.log(`App running in port: ${PORT}`));

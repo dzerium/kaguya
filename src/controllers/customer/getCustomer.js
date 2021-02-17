@@ -1,9 +1,11 @@
-function makeGetSubscription(getSubscriptionUc) {
+function makeGetCustomer(getCustomerUc) {
   // * Get Subscription Controller
-  return async function getSubscription(httpRequest) {
+  return async function createSubscription(httpRequest) {
     const headers = { "Content-Type": "application/json" };
     let statusCode = 200;
     let body = { error: "Id not found" };
+
+    getCustomerUc();
 
     return {
       headers,
@@ -13,4 +15,4 @@ function makeGetSubscription(getSubscriptionUc) {
   };
 }
 
-module.exports = makeGetSubscription;
+module.exports = makeGetCustomer;
