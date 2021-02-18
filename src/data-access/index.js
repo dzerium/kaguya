@@ -8,7 +8,6 @@ let client = null
 
 async function makeDb() {
   if (!client) {
-    console.log(client)
     client = await massive({
       user: PG_USER,
       password: PG_PASS,

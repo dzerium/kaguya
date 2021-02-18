@@ -7,7 +7,7 @@ const { getCustomer, createCustomer } = customerController;
 const router = Router();
 
 module.exports = () => {
-  router.get("/:id", requestAdapter(getCustomer));
+  router.get("/:email", requestAdapter(getCustomer));
   router.post("/", requestAdapter(createCustomer));
   return router;
 };

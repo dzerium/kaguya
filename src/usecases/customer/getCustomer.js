@@ -1,11 +1,11 @@
 function makeGetCustomer({ customerDb }) {
   // * Get Subscription Use-case
-  return async function getCustomerById({ id } = {}) {
-    if (!id) {
-      throw new Error("Id should be supplied");
+  return async function getCustomer({ email } = {}) {
+    if (!email) {
+      throw new Error("Email should be supplied");
     }
 
-    const customer = await customerDb.getCustomerById({ id });
+    const customer = await customerDb.findCustomerByEmail({ email });
 
     return customer;
   };

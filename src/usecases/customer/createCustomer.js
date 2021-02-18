@@ -2,12 +2,11 @@ const { makeCustomer } = require("../../entities");
 
 function makeCreateCustomer({ customerDb, validateAddress }) {
   // * Get Subscription Use-case
-  return async function getCustomerById(customerInfo) {
+  return async function createCustomer(customerInfo) {
     const customer = makeCustomer(customerInfo)
 
-    const existingCustomer = customerDb.findCustomerByEmail({ email: customer.getEmail()})
-
-    if (existingCustomer && existingCustomer.length > 0) {
+    const existingCustomer = await customerDb.findCustomerByEmail({ email: customer.getEmail()})
+    if (existingCustomer) {
       return existingCustomer;
     }
 
@@ -38,7 +37,7 @@ function makeCreateCustomer({ customerDb, validateAddress }) {
       }
     )
 
-    return customerInfo;
+    return createdCustomer;
   };
 }
 
