@@ -1,31 +1,25 @@
+const CUSTOMER_TABLE = "customer"
+
 function makeCustomer({ makeDb }) {
   return Object.freeze({
-    getCustomerById,
-    createCustomer
+    createCustomer,
+    findCustomerByEmail
   });
 
-  // * Get product by name and frequency
-  async function getCustomerById({ id }) {
-    const db = await makeDb();
-    const result = await db.query(
-      "SELECT * FROM customer WHERE id = $1",
-      [id]
-    );
-    if (result.rows.length === 0) return null;
-
-    return result.rows[0];
+  async function createCustomer(customerInfo) {
+    const client = await makeDb();
+    const result = await client.saveDoc(CUSTOMER_TABLE, customerInfo);
+    return result
   }
 
-  async function createCustomer({ email, firstname, lastname, birthday }, billingAddressId) {
-    const db = await makeDb();
-    const result = await db.query(
-      `INSERT INTO
-        customer (email, firstname, lastname, birthday, billingAddressId)
-        VALUES ($1, $2, $3, $4, $5)`,
-      [email, firstname, lastname, birthday, billingAddressId]
-    )
-    console.log(result)
-    return result.rows[0]
+  async function findCustomerByEmail({ email }) {
+    const client = await makeDb();
+    const result = await client[CUSTOMER_TABLE].findDoc({ email })
+
+    if (result.length === 0) {
+      return null
+    }
+    return result[0]
   }
 }
 

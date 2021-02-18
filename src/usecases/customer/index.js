@@ -1,11 +1,14 @@
 const { customerDb, addressDb } = require("../../data-access");
 
+const makeCreateCustomer = require("./createCustomer");
 const makeGetCustomer = require("./getCustomer");
-const makeCreateCustomer = require("./getCustomer");
+
 
 // Create UC from factory
-const createCustomerUc = makeCreateCustomer({ customerDb, addressDb });
-const getCustomerUc = makeCreateCustomer({ customerDb });
+const validateAddress = ({}) => {return true}
+
+const createCustomerUc = makeCreateCustomer({ customerDb, validateAddress });
+const getCustomerUc = makeGetCustomer({ customerDb });
 
 
 const customerUseCases = Object.freeze({

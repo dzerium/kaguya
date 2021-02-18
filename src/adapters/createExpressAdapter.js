@@ -22,8 +22,10 @@ function createExpressAdapter(controller) {
         response.type("json");
         response.status(httpResponse.statusCode).send(httpResponse.body);
       })
-      .catch((e) =>
+      .catch((e) => {
+        console.log(e)
         response.status(500).send({ error: "An unkown error occurred." })
+      }
       );
   };
 }

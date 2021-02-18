@@ -7,8 +7,8 @@ const { getCustomerUc, createCustomerUc } = customerUseCases;
 
 
 // * Create the Constructors
-const getCustomer = makeGetCustomer(getCustomerUc);
-const createCustomer = makeCreateCustomer(createCustomerUc);
+const getCustomer = makeGetCustomer({ getCustomerUc });
+const createCustomer = makeCreateCustomer({ createCustomerUc });
 
 const customerController = Object.freeze({ getCustomer, createCustomer });
 

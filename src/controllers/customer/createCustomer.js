@@ -1,18 +1,19 @@
-function makeCreateCustomer(creacteCustomerUc) {
+function makeCreateCustomer({ createCustomerUc }) {
   // * Create Customer Controller
   return async function createCustomer(httpRequest) {
     const headers = { "Content-Type": "application/json" };
     let statusCode = 200;
-    let body = { error: "Id not found" };
+    let body = {};
 
+    const { ...customerInfo } = httpRequest.body
 
-    const {
-      email, firstname, lastname, birthday,
-      country, zip, city, street, number
-    } = httpRequest.body
-
-    creacteCustomerUc(
-      {email, firstname, lastname, birthday, country, zip, city, street, number});
+    try {
+      const result = await createCustomerUc(customerInfo);
+      body = result;
+    } catch (error) {
+      statusCode = 400
+      body = { error: error.message}
+    }
 
     return {
       headers,
