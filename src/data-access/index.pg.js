@@ -4,9 +4,6 @@ const makeCustomerDb = require("./customer");
 
 const { PG_USER, PG_PASS, PG_HOST, PG_DB, PG_PORT, PG_SSL } = process.env;
 
-// * default pool 10
-// * default idle timeout 10000 secs
-// * defaul connection timeout 0
 const pool = new Pool({
   user: PG_USER,
   password: PG_PASS,

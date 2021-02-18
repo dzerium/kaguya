@@ -4,5 +4,20 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/node_modules": true,
+			"**/.eslintrc.json": true,
+			".eslintrc.json": true,
+			"**/.gitignore": true,
+			"src\\data-access/index.mongo.js": true,
+			"src\\data-access/index.pg.js": true
+		},
+		"explorerExclude.backup": null
+	}
 }

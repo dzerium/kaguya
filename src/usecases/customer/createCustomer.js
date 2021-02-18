@@ -27,6 +27,7 @@ function makeCreateCustomer({ customerDb, validateAddress }) {
         email: customer.getEmail(),
         firstname: customer.getFirstName(),
         lastname: customer.getLastName(),
+        state: customer.getState(),
         billingAddress: {
           country: customer.getCountry(),
           zip: customer.getZip(),

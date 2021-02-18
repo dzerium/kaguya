@@ -8,7 +8,8 @@ function makeCreateCustomer({ createCustomerUc }) {
     const { ...customerInfo } = httpRequest.body
 
     try {
-      body = await createCustomerUc(customerInfo);
+      const result = await createCustomerUc(customerInfo);
+      body = { createdCustomer: result }
     } catch (error) {
       statusCode = 400
       body = { error: error.message}

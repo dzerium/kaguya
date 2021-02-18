@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 
-const makeStockDb = require("./stock-db");
+const makeCustomerDb = require("./customerDb");
 
 const url = process.env.DB_HOST_URL;
 const dbName = process.env.DB_NAME;
@@ -17,8 +17,6 @@ async function makeDb() {
   return client.db(dbName);
 }
 
-const stockDb = makeStockDb({ makeDb });
-const staticDb = makeStaticDb({ makeDb });
-const stockHistoryDb = makeStockHistoryDb({ makeDb });
+const customerDb = makeCustomerDb({ makeDb });
 
-module.exports = { stockDb, staticDb, stockHistoryDb };
+module.exports = { customerDb };

@@ -6,7 +6,8 @@ function makeCustomer({ makeDb }) {
     findCustomerByEmail
   });
 
-  async function createCustomer(customerInfo) {
+
+  async function createCustomer({ ...customerInfo }) {
     const client = await makeDb();
     const result = await client.saveDoc(CUSTOMER_TABLE, customerInfo);
     return result
