@@ -17,7 +17,6 @@ function makeCreateCustomer({ customerDb, validateAddress }) {
       street: customer.getStreet(),
       houseNumber: customer.getHouseNumber(),
     })
-
     if (!result) {
       throw new Error('Address must be valid')
     }

@@ -1,4 +1,4 @@
-const { customerDb, addressDb } = require("../../data-access");
+const { customerDb } = require("../../data-access");
 
 const makeCreateCustomer = require("./createCustomer");
 const makeGetCustomer = require("./getCustomer");

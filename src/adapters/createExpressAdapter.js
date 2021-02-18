@@ -15,12 +15,12 @@ function createExpressAdapter(controller) {
     };
 
     controller(httpRequest)
-      .then((httpResponse) => {
-        if (httpResponse.headers) {
-          response.set(httpResponse.headers);
+      .then(({ headers, statusCode, body }) => {
+        if (headers) {
+          response.set(headers);
         }
         response.type("json");
-        response.status(httpResponse.statusCode).send(httpResponse.body);
+        response.status(statusCode).send(body);
       })
       .catch((e) => {
         console.log(e)
