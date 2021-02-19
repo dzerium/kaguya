@@ -1,26 +1,29 @@
-const CUSTOMER_TABLE = "customer"
+const CUSTOMER_TABLE = "customer";
 
 function makeCustomer({ makeDb }) {
   return Object.freeze({
     createCustomer,
-    findCustomerByEmail
+    findCustomerByEmail,
   });
-
 
   async function createCustomer({ ...customerInfo }) {
     const client = await makeDb();
     const result = await client.saveDoc(CUSTOMER_TABLE, customerInfo);
-    return result
+    return result;
   }
 
   async function findCustomerByEmail({ email }) {
     const client = await makeDb();
-    const result = await client[CUSTOMER_TABLE].findDoc({ email })
+
+    if (!client[CUSTOMER_TABLE]) {
+      await client.createDocumentTable(CUSTOMER_TABLE);
+    }
+    const result = await client[CUSTOMER_TABLE].findDoc({ email });
 
     if (result.length === 0) {
-      return null
+      return null;
     }
-    return result[0]
+    return result[0];
   }
 }
 

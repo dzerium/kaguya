@@ -1,17 +1,17 @@
-function makeCreateCustomer({ createCustomerUc }) {
+function makeCreateCustomer({ registerAuthUc }) {
   // * Create Customer Controller
   return async function createCustomer(httpRequest) {
     const headers = { "Content-Type": "application/json" };
     let statusCode = 201;
     let body = {};
 
-    const { ...customerInfo } = httpRequest.body;
+    // * { username, password }
+    const { ...authInfo } = httpRequest.body;
 
     try {
-      const result = await createCustomerUc(customerInfo);
-      body = { createdCustomer: result };
+      const { email } = await registerAuthUc(authInfo);
+      body = { registered: email };
     } catch (error) {
-      console.log(error);
       statusCode = 400;
       body = { error: error.message };
     }

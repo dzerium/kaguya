@@ -1,5 +1,4 @@
-const customerUseCases= require("./customer");
+const customerUseCases = require("./customer");
+const authUseCases = require("./auth");
 
-
-
-module.exports = { customerUseCases };
+module.exports = { customerUseCases, authUseCases };
