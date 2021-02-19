@@ -8,7 +8,7 @@ const schema = {
   additionalProperties: false,
 };
 
-module.exports = ({ validateData, encrypt }) => {
+module.exports = ({ validateData, encrypt, compare }) => {
   return async function makeAuth(auth) {
     // * used schema instead of nested if-else statements
     const errorMessage = validateData(schema, auth);
@@ -16,11 +16,11 @@ module.exports = ({ validateData, encrypt }) => {
       throw new Error(errorMessage);
     }
 
-    const encryptedPassword = await encrypt(auth.password);
-
     return Object.freeze({
       getEmail: () => auth.email,
-      getEncryptedPassword: () => encryptedPassword,
+      isPasswordMatched: async (encryptedPassword) =>
+        await compare(auth.password, encryptedPassword),
+      getEncryptedPassword: async () => await encrypt(auth.password),
     });
   };
 };

@@ -4,7 +4,6 @@ function makeAuth({ makeDb }) {
   return Object.freeze({
     registerAuth,
     findAuthByEmail,
-    matchCredentials,
   });
 
   // * register a user - password authentication
@@ -18,17 +17,6 @@ function makeAuth({ makeDb }) {
   async function findAuthByEmail({ email }) {
     const client = await makeDb();
     const result = await client[AUTH_TABLE].findDoc({ email });
-
-    if (result.length === 0) {
-      return null;
-    }
-    return result[0];
-  }
-
-  // * find credentials by email
-  async function matchCredentials({ email, password }) {
-    const client = await makeDb();
-    const result = await client[AUTH_TABLE].findDoc({ email, password });
 
     if (result.length === 0) {
       return null;

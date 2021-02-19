@@ -6,16 +6,18 @@ function makeLoginAuth({ authDb }) {
     const auth = await makeAuth(authInfo);
 
     // * Authentication email is already existing
-    const matched = await authDb.matchCredentials({
+    const existingAuth = await authDb.findAuthByEmail({
       email: auth.getEmail(),
-      password: auth.getEncryptedPassword(),
     });
 
-    if (!matched) {
-      throw new Error("Wrong credentials provided");
+    if (!existingAuth) {
+      throw new Error("No matching email found");
     }
 
-    return matched;
+    // * Check if passwords will match
+    const result = auth.isPasswordMatched(existingAuth.password);
+
+    return result;
   };
 }
 

@@ -24,10 +24,15 @@ async function encrypt(password) {
   return hashed;
 }
 
+async function compare(password, encryptedPassword) {
+  const isMatched = await bcrypt.compare(password, encryptedPassword);
+  return isMatched;
+}
+
 // * Entities
 const buildMakeAuth = require("./auth");
 
 // * Inject dependencies
-const makeAuth = buildMakeAuth({ validateData, encrypt });
+const makeAuth = buildMakeAuth({ validateData, encrypt, compare });
 
 module.exports = makeAuth;

@@ -9,9 +9,10 @@ function makeLoginAuth({ loginAuthUc }) {
     const { ...authInfo } = httpRequest.body;
 
     try {
-      const { email } = await loginAuthUc(authInfo);
-      body = { loggedIn: email };
+      const result = await loginAuthUc(authInfo);
+      body = { loggedIn: result };
     } catch (error) {
+      console.log(error);
       statusCode = 400;
       body = { error: error.message };
     }
