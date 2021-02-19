@@ -15,9 +15,13 @@ function makeLoginAuth({ authDb }) {
     }
 
     // * Check if passwords will match
-    const result = auth.isPasswordMatched(existingAuth.password);
+    const result = await auth.isPasswordMatched(existingAuth.password);
+    if (!result) {
+      throw new Error("Password did not matched");
+    }
 
-    return result;
+    const authToken = auth.getAuthToken();
+    return authToken;
   };
 }
 

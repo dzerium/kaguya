@@ -10,9 +10,8 @@ function makeLoginAuth({ loginAuthUc }) {
 
     try {
       const result = await loginAuthUc(authInfo);
-      body = { loggedIn: result };
+      body = { authToken: result };
     } catch (error) {
-      console.log(error);
       statusCode = 400;
       body = { error: error.message };
     }
