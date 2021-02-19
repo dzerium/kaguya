@@ -23,5 +23,8 @@ async function makeDb() {
 }
 
 customerDb = makeCustomerDb({ makeDb });
+// productDb = makeProductDb({ makeDb });
+// voucherDb = makeVoucherDb({ makeDb });
 
-module.exports = { customerDb };
+// module.exports = { customerDb, productDb, voucherDb };
+module.exports = { customerDb }
