@@ -14,10 +14,6 @@ function makeCustomer({ makeDb }) {
 
   async function findCustomerByEmail({ email }) {
     const client = await makeDb();
-
-    if (!client[CUSTOMER_TABLE]) {
-      await client.createDocumentTable(CUSTOMER_TABLE);
-    }
     const result = await client[CUSTOMER_TABLE].findDoc({ email });
 
     if (result.length === 0) {

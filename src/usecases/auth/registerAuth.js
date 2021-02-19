@@ -1,7 +1,7 @@
 const { makeAuth } = require("../../entities");
 
 function makeRegisterAuth({ authDb }) {
-  // * Get Subscription Use-case
+  // * Register Credential Use Case
   return async function registerAuth(authInfo) {
     const auth = await makeAuth(authInfo);
 

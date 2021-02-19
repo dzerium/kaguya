@@ -1,5 +1,5 @@
 function makeGetCustomer({ customerDb }) {
-  // * Get Subscription Use-case
+  // * Get Customer Use Case
   return async function getCustomer({ email } = {}) {
     if (!email) {
       throw new Error("Email should be supplied");

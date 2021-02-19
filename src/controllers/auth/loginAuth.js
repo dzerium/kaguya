@@ -1,6 +1,6 @@
-function makeCreateAuth({ registerAuthUc }) {
-  // * Register Authentication Credentials
-  return async function registerAuth(httpRequest) {
+function makeLoginAuth({ loginAuthUc }) {
+  // * Login Authentication Credentials
+  return async function loginAuth(httpRequest) {
     const headers = { "Content-Type": "application/json" };
     let statusCode = 201;
     let body = {};
@@ -9,8 +9,8 @@ function makeCreateAuth({ registerAuthUc }) {
     const { ...authInfo } = httpRequest.body;
 
     try {
-      const { email } = await registerAuthUc(authInfo);
-      body = { registered: email };
+      const { email } = await loginAuthUc(authInfo);
+      body = { loggedIn: email };
     } catch (error) {
       statusCode = 400;
       body = { error: error.message };
@@ -24,4 +24,4 @@ function makeCreateAuth({ registerAuthUc }) {
   };
 }
 
-module.exports = makeCreateAuth;
+module.exports = makeLoginAuth;

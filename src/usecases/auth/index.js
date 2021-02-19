@@ -1,6 +1,7 @@
 const { authDb } = require("../../data-access");
 
 const makeRegisterAuth = require("./registerAuth");
+const makeLoginAuth = require("./loginAuth");
 
 // Create UC from factory
 const md5 = ({}) => {
@@ -8,9 +9,11 @@ const md5 = ({}) => {
 };
 
 const registerAuthUc = makeRegisterAuth({ authDb, md5 });
+const loginAuthUc = makeLoginAuth({ authDb, md5 });
 
 const authUseCases = Object.freeze({
   registerAuthUc,
+  loginAuthUc,
 });
 
 module.exports = authUseCases;

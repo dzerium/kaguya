@@ -1,7 +1,7 @@
 const { makeCustomer } = require("../../entities");
 
 function makeCreateCustomer({ customerDb, validateAddress }) {
-  // * Get Subscription Use-case
+  // * Create Customer Use Case
   return async function createCustomer(customerInfo) {
     const customer = makeCustomer(customerInfo);
 
