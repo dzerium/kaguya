@@ -1,6 +1,6 @@
-// const { authUseCases } = require("../../usecases");
+const { authUseCases } = require("../../usecases");
 
-const makeRegisterAuth = require("./register");
+const makeRegisterAuth = require("./registerAuth");
 
 const { registerAuthUc } = authUseCases;
 

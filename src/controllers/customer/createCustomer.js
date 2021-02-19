@@ -11,7 +11,6 @@ function makeCreateCustomer({ createCustomerUc }) {
       const result = await createCustomerUc(customerInfo);
       body = { createdCustomer: result };
     } catch (error) {
-      console.log(error);
       statusCode = 400;
       body = { error: error.message };
     }

@@ -1,4 +1,4 @@
-function makeCreateCustomer({ registerAuthUc }) {
+function makeCreateAuth({ registerAuthUc }) {
   // * Create Customer Controller
   return async function createCustomer(httpRequest) {
     const headers = { "Content-Type": "application/json" };
@@ -24,4 +24,4 @@ function makeCreateCustomer({ registerAuthUc }) {
   };
 }
 
-module.exports = makeCreateCustomer;
+module.exports = makeCreateAuth;
