@@ -8,7 +8,6 @@ function createRouter () {
   router.use("/customer", createCustomerRoute());
 
   // * router.use("/voucher", createVoucherRoute());
-  // * router.use("/voucher", createVoucherRoute());
 
   router.use((request, response) => {
     response.sendStatus(404);
