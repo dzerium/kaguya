@@ -3,6 +3,11 @@ const schema = {
   properties: {
     email: { type: "string", format: "email" },
     password: { type: ["string"], minLength: 8, maxLength: 32 },
+    role: {
+      type: ["string"],
+      enum: ["customer", "admin"],
+      default: "customer",
+    },
   },
   required: ["email", "password"],
   additionalProperties: false,
@@ -24,13 +29,13 @@ module.exports = ({
 
     let role = "customer";
 
+    let encryptedPassword = await encrypt(auth.password);
+
     return Object.freeze({
       getEmail: () => auth.email,
-      getEncryptedPassword: async () => await encrypt(auth.password),
+      getEncryptedPassword: () => encryptedPassword,
       isPasswordMatched: async (encryptedPassword) =>
         await compare(auth.password, encryptedPassword),
-      setAdmin: () => (role = "admin"),
-      setCustomerRole: () => (role = "customer"),
       getRole: () => role,
       // * JWT token
       getAuthToken: () =>

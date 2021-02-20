@@ -17,6 +17,7 @@ function makeRegisterAuth({ authDb }) {
     const result = authDb.registerAuth({
       email: auth.getEmail(),
       password: auth.getEncryptedPassword(),
+      role: auth.getRole(),
     });
 
     return result;

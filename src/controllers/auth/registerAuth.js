@@ -9,8 +9,8 @@ function makeCreateAuth({ registerAuthUc }) {
     const { ...authInfo } = httpRequest.body;
 
     try {
-      const { email } = await registerAuthUc(authInfo);
-      body = { registered: email };
+      const { email, role } = await registerAuthUc(authInfo);
+      body = { registered: { email, role } };
     } catch (error) {
       statusCode = 400;
       body = { error: error.message };
