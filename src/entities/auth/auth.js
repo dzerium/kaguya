@@ -27,8 +27,6 @@ module.exports = ({
       throw new Error(errorMessage);
     }
 
-    let role = "customer";
-
     let encryptedPassword = await encrypt(auth.password);
 
     return Object.freeze({
@@ -36,7 +34,7 @@ module.exports = ({
       getEncryptedPassword: () => encryptedPassword,
       isPasswordMatched: async (encryptedPassword) =>
         await compare(auth.password, encryptedPassword),
-      getRole: () => role,
+      getRole: () => auth.role,
       // * JWT token
       getAuthToken: () =>
         createAuthToken({
